@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ekanshi Katiyar</title>
+<meta name="description" content="Ekanshi Katiyar — Data Integration & Cloud Engineer | BHU">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+        background: #0a0e1a;
+        color: #e2e8f0;
+        font-family: 'Inter', sans-serif;
+        overflow: hidden;
+        height: 100vh;
+        cursor: default;
+    }
+
+    #particles {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+    }
+
+    .hero {
+        position: relative;
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        text-align: center;
+        padding: 2rem;
+    }
+
+    .terminal {
+        background: rgba(15, 23, 42, 0.85);
+        border: 1px solid rgba(59, 130, 246, 0.2);
+        border-radius: 12px;
+        padding: 0;
+        max-width: 760px;
+        width: 100%;
+        backdrop-filter: blur(20px);
+        box-shadow: 0 0 80px rgba(59, 130, 246, 0.08), 0 20px 60px rgba(0,0,0,0.4);
+        overflow: hidden;
+        opacity: 0;
+        transform: translateY(30px);
+        animation: fadeUp 0.8s ease 0.3s forwards;
+    }
+
+    .terminal-bar {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 12px 16px;
+        background: rgba(30, 41, 59, 0.6);
+        border-bottom: 1px solid rgba(59, 130, 246, 0.1);
+    }
+    .terminal-dot { width: 10px; height: 10px; border-radius: 50%; }
+    .terminal-dot.red { background: #ef4444; }
+    .terminal-dot.yellow { background: #eab308; }
+    .terminal-dot.green { background: #22c55e; }
+    .terminal-title {
+        flex: 1; text-align: center; font-size: 11px; color: #64748b;
+        font-family: 'JetBrains Mono', monospace;
+    }
+
+    .terminal-body {
+        padding: 28px 28px 32px;
+        text-align: left;
+    }
+
+    .code-line {
+        font-family: 'JetBrains Mono', monospace;
+        font-size: clamp(11px, 1.4vw, 13px);
+        line-height: 1.8;
+        white-space: pre-wrap;
+        word-break: break-word;
+    }
+    .code-line .prompt   { color: #22c55e; }
+    .code-line .keyword  { color: #c084fc; }
+    .code-line .string   { color: #fbbf24; }
+    .code-line .type     { color: #60a5fa; }
+    .code-line .comment  { color: #475569; font-style: italic; }
+    .code-line .method   { color: #34d399; }
+    .code-line .number   { color: #f97316; }
+    .code-line .bracket  { color: #94a3b8; }
+    .code-line .operator { color: #f472b6; }
+    .code-line .self     { color: #f472b6; font-style: italic; }
+
+    .code-line {
+        opacity: 0;
+        transform: translateX(-8px);
+        animation: lineIn 0.4s ease forwards;
+    }
+    .code-line:nth-child(1)  { animation-delay: 1.0s; }
+    .code-line:nth-child(2)  { animation-delay: 1.4s; }
+    .code-line:nth-child(3)  { animation-delay: 1.8s; }
+    .code-line:nth-child(4)  { animation-delay: 2.2s; }
+    .code-line:nth-child(5)  { animation-delay: 2.6s; }
+    .code-line:nth-child(6)  { animation-delay: 3.0s; }
+    .code-line:nth-child(7)  { animation-delay: 3.4s; }
+    .code-line:nth-child(8)  { animation-delay: 3.8s; }
+    .code-line:nth-child(9)  { animation-delay: 4.2s; }
+    .code-line:nth-child(10) { animation-delay: 4.6s; }
+    .code-line:nth-child(11) { animation-delay: 5.0s; }
+
+    @keyframes lineIn {
+        from { opacity: 0; transform: translateX(-8px); }
+        to   { opacity: 1; transform: translateX(0); }
+    }
+
+    .code-line:last-child::after {
+        content: '_';
+        animation: blink 1s step-end infinite;
+        color: #3b82f6;
+    }
+    @keyframes blink { 0%,100% { opacity:1; } 50% { opacity:0; } }
+
+    .name-section {
+        margin-top: 40px;
+        opacity: 0;
+        animation: fadeUp 0.8s ease 5.5s forwards;
+    }
+    .name {
+        font-size: clamp(2rem, 5vw, 3.5rem);
+        font-weight: 700;
+        letter-spacing: -1px;
+        background: linear-gradient(135deg, #60a5fa, #a78bfa, #34d399);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+    .subtitle {
+        font-size: 14px;
+        color: #64748b;
+        margin-top: 8px;
+        font-family: 'JetBrains Mono', monospace;
+    }
+    .subtitle span { color: #94a3b8; }
+
+    .tags {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 20px;
+        opacity: 0;
+        animation: fadeUp 0.6s ease 6s forwards;
+    }
+    .tag {
+        padding: 4px 12px;
+        border-radius: 20px;
+        font-size: 11px;
+        font-family: 'JetBrains Mono', monospace;
+        border: 1px solid rgba(59, 130, 246, 0.2);
+        color: #94a3b8;
+        background: rgba(59, 130, 246, 0.05);
+    }
+
+    .cta {
+        margin-top: 36px;
+        opacity: 0;
+        animation: fadeUp 0.6s ease 6.4s forwards;
+    }
+    .cta a {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 32px;
+        background: linear-gradient(135deg, #2563eb, #7c3aed);
+        color: white;
+        text-decoration: none;
+        border-radius: 10px;
+        font-weight: 600;
+        font-size: 14px;
+        transition: transform 0.2s, box-shadow 0.2s;
+        box-shadow: 0 4px 20px rgba(37, 99, 235, 0.3);
+    }
+    .cta a:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 30px rgba(37, 99, 235, 0.5);
+    }
+    .cta a svg { transition: transform 0.2s; }
+    .cta a:hover svg { transform: translateX(3px); }
+
+    @keyframes fadeUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .floating-metrics {
+        position: fixed;
+        inset: 0;
+        z-index: 0;
+        pointer-events: none;
+    }
+    .float-metric {
+        position: absolute;
+        font-family: 'JetBrains Mono', monospace;
+        font-size: 11px;
+        padding: 4px 10px;
+        border-radius: 6px;
+        background: rgba(15, 23, 42, 0.7);
+        border: 1px solid rgba(59, 130, 246, 0.15);
+        color: #475569;
+        opacity: 0;
+        animation: floatIn 8s ease-in-out infinite;
+    }
+    .float-metric:nth-child(1) { top: 10%;    left: 5%;   animation-delay: 0s; }
+    .float-metric:nth-child(2) { top: 20%;    right: 8%;  animation-delay: 2s; }
+    .float-metric:nth-child(3) { bottom: 25%; left: 8%;   animation-delay: 4s; }
+    .float-metric:nth-child(4) { bottom: 15%; right: 5%;  animation-delay: 1s; }
+    .float-metric:nth-child(5) { top: 40%;    left: 3%;   animation-delay: 3s; }
+    .float-metric:nth-child(6) { top: 35%;    right: 4%;  animation-delay: 5s; }
+
+    @keyframes floatIn {
+        0%, 100% { opacity: 0; transform: translateY(10px); }
+        20%, 80% { opacity: 0.5; transform: translateY(0); }
+    }
+
+    .skip-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        z-index: 10;
+        padding: 6px 14px;
+        background: rgba(30, 41, 59, 0.6);
+        border: 1px solid rgba(100, 116, 139, 0.2);
+        border-radius: 8px;
+        color: #64748b;
+        font-size: 11px;
+        font-family: 'JetBrains Mono', monospace;
+        cursor: pointer;
+        transition: color 0.2s, border-color 0.2s;
+        text-decoration: none;
+    }
+    .skip-btn:hover { color: #94a3b8; border-color: rgba(100, 116, 139, 0.4); }
+</style>
+</head>
+<body>
+
+<canvas id="particles"></canvas>
+
+<div class="floating-metrics">
+    <div class="float-metric">pipelines: 40+ live</div>
+    <div class="float-metric">records/day: 12M</div>
+    <div class="float-metric">uptime: 99.95%</div>
+    <div class="float-metric">warehouses: Snowflake</div>
+    <div class="float-metric">dbt_models: 180+</div>
+    <div class="float-metric">cloud: AWS + Azure</div>
+</div>
+
+<div class="hero">
+    <div class="terminal">
+        <div class="terminal-bar">
+            <div class="terminal-dot red"></div>
+            <div class="terminal-dot yellow"></div>
+            <div class="terminal-dot green"></div>
+            <span class="terminal-title">ekanshi@dataeng ~ /portfolio</span>
+        </div>
+        <div class="terminal-body">
+            <div class="code-line"><span class="keyword">class</span> <span class="type">Ekanshi</span><span class="bracket">(</span><span class="type">DataEngineer</span><span class="bracket">):</span></div>
+            <div class="code-line">&nbsp;&nbsp;<span class="keyword">def</span> <span class="method">__init__</span><span class="bracket">(</span><span class="self">self</span><span class="bracket">):</span></div>
+            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="self">self</span>.role   = <span class="string">"Data Integration &amp; Cloud Engineer"</span></div>
+            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="self">self</span>.alma   = <span class="string">"Banaras Hindu University"</span></div>
+            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="self">self</span>.stack  = <span class="bracket">[</span><span class="string">"Python"</span>, <span class="string">"SQL"</span>, <span class="string">"SnapLogic"</span>, <span class="string">"Snowflake"</span>, <span class="string">"dbt"</span>, <span class="string">"AWS"</span>, <span class="string">"Azure"</span><span class="bracket">]</span></div>
+            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="self">self</span>.years  = <span class="number">4</span></div>
+            <div class="code-line"></div>
+            <div class="code-line">&nbsp;&nbsp;<span class="keyword">def</span> <span class="method">current_mission</span><span class="bracket">(</span><span class="self">self</span><span class="bracket">)</span> <span class="operator">-&gt;</span> <span class="type">str</span><span class="bracket">:</span></div>
+            <div class="code-line">&nbsp;&nbsp;&nbsp;&nbsp;<span class="keyword">return</span> <span class="string">"Building data platforms that scale across clouds"</span></div>
+        </div>
+    </div>
+
+    <div class="name-section">
+        <div class="name">Ekanshi Katiyar</div>
+        <div class="subtitle">
+            <span>$</span> Data Integration &amp; Cloud Engineer <span>&bull;</span> BHU <span>'21</span>
+        </div>
+    </div>
+
+    <div class="tags">
+        <span class="tag">SnapLogic</span>
+        <span class="tag">Snowflake</span>
+        <span class="tag">dbt</span>
+        <span class="tag">AWS</span>
+        <span class="tag">Azure</span>
+    </div>
+
+    <div class="cta">
+        <a href="home.html">
+            Explore Portfolio
+            <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+        </a>
+    </div>
+</div>
+
+<a href="home.html" class="skip-btn">skip intro &rarr;</a>
+
+<script>
+const canvas = document.getElementById('particles');
+const ctx = canvas.getContext('2d');
+let w, h, particles, mouse;
+
+function init() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+    mouse = { x: w / 2, y: h / 2 };
+
+    const count = Math.min(Math.floor((w * h) / 12000), 120);
+    particles = [];
+    for (let i = 0; i < count; i++) {
+        particles.push({
+            x: Math.random() * w,
+            y: Math.random() * h,
+            vx: (Math.random() - 0.5) * 0.4,
+            vy: (Math.random() - 0.5) * 0.4,
+            r: Math.random() * 2 + 1,
+            type: Math.random() > 0.7 ? 'server' : 'node',
+        });
+    }
+}
+
+function draw() {
+    ctx.clearRect(0, 0, w, h);
+
+    for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const dist = Math.sqrt(dx * dx + dy * dy);
+            if (dist < 150) {
+                const alpha = (1 - dist / 150) * 0.15;
+                ctx.beginPath();
+                ctx.moveTo(particles[i].x, particles[i].y);
+                ctx.lineTo(particles[j].x, particles[j].y);
+                ctx.strokeStyle = `rgba(59, 130, 246, ${alpha})`;
+                ctx.lineWidth = 0.5;
+                ctx.stroke();
+            }
+        }
+
+        const mx = particles[i].x - mouse.x;
+        const my = particles[i].y - mouse.y;
+        const md = Math.sqrt(mx * mx + my * my);
+        if (md < 250) {
+            const alpha = (1 - md / 250);
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(mouse.x, mouse.y);
+            ctx.strokeStyle = `rgba(124, 58, 237, ${alpha * 0.3})`;
+            ctx.lineWidth = 4;
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(mouse.x, mouse.y);
+            ctx.strokeStyle = `rgba(167, 139, 250, ${alpha * 0.8})`;
+            ctx.lineWidth = 1.2;
+            ctx.stroke();
+
+            ctx.beginPath();
+            ctx.arc(particles[i].x, particles[i].y, particles[i].r + 3, 0, Math.PI * 2);
+            ctx.fillStyle = `rgba(124, 58, 237, ${alpha * 0.4})`;
+            ctx.fill();
+        }
+    }
+
+    for (const p of particles) {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > w) p.vx *= -1;
+        if (p.y < 0 || p.y > h) p.vy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        if (p.type === 'server') {
+            ctx.fillStyle = 'rgba(96, 165, 250, 0.6)';
+            ctx.shadowColor = 'rgba(59, 130, 246, 0.3)';
+            ctx.shadowBlur = 10;
+        } else {
+            ctx.fillStyle = 'rgba(148, 163, 184, 0.3)';
+            ctx.shadowBlur = 0;
+        }
+        ctx.fill();
+        ctx.shadowBlur = 0;
+    }
+
+    requestAnimationFrame(draw);
+}
+
+window.addEventListener('resize', init);
+window.addEventListener('mousemove', (e) => { mouse.x = e.clientX; mouse.y = e.clientY; });
+
+init();
+draw();
+</script>
+
+</body>
+</html>
